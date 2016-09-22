@@ -7,8 +7,8 @@ db.bios.find({$or:[{"contribs": "OOP"},{"contribs": "UNIX"}]});
 // Find documents with "Turing Award" awards.
 db.bios.find({"awards.award": "Turing Award"});
 // Find documents with IDs between 3 and 7.
-db.bios.find({_id:{"$gte": 3, "$lte": 7}});
+db.bios.find({_id:{"$gt": 3, "$lt": 7}});
 // Find documents with awards that were awarded before the year 2000.
 db.bios.find({"awards.year": {"$lt": 2000}});
 // Find documents with birth dates, but no death dates.
-db.bios.find({"birth": {$exists: true}},{"death": 0});
+db.bios.find({$and:[{"birth": {$exists: true}},{"death":{$exists: false}}]}).pretty();
